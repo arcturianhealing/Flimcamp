@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Camp — Your Child's First Movie Starts Here 🎬</title>
+    <meta name="description" content="Filmmaking camp for kids ages 7-14. Acting and filmmaking camp where kids write scripts, direct scenes, act on camera, and premiere their own movies. Beginner film classes for children.">
+    <meta name="keywords" content="filmmaking camp for kids, acting and filmmaking camp, kids movie camp, filmmaking summer camp, beginner film classes for children, creative summer camp, kids acting camp, film production camp for teens">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/poppins@4.5.0/index.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        campRed: '#E31837',
+                        campGold: '#FFD700',
+                        campDark: '#1a1a2e',
+                        campOrange: '#FF6B35',
+                        campYellow: '#FFA500',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1a2e; }
+        ::-webkit-scrollbar-thumb { background: #E31837; border-radius: 4px; }
+
+        /* Countdown Animation */
+        .countdown-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #1a1a2e; z-index: 10000; display: flex;
+            align-items: center; justify-content: center; flex-direction: column;
+        }
+        .countdown-number {
+            font-size: 120px; font-weight: 900; color: #FFD700;
+            animation: countPulse 1s ease-in-out; text-shadow: 0 0 40px rgba(255,215,0,0.5);
+        }
+        @keyframes countPulse {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Spotlight Effect */
+        .spotlight {
+            position: absolute; width: 300px; height: 600px;
+            background: linear-gradient(180deg, rgba(255,215,0,0.15) 0%, transparent 100%);
+            clip-path: polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%);
+            animation: spotlightSweep 4s ease-in-out infinite alternate;
+        }
+        @keyframes spotlightSweep {
+            0% { transform: translateX(-100px) rotate(-5deg); }
+            100% { transform: translateX(100px) rotate(5deg); }
+        }
+
+        /* Floating Elements */
+        .float-element { animation: floatBounce 3s ease-in-out infinite; }
+        @keyframes floatBounce {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        .float-element-2 { animation: floatBounce2 4s ease-in-out infinite; }
+        @keyframes floatBounce2 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(-3deg); }
+        }
+        .float-element-3 { animation: floatBounce3 3.5s ease-in-out infinite; }
+        @keyframes floatBounce3 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(3deg); }
+        }
+
+        /* Film Strip Divider */
+        .film-strip {
+            height: 40px; background: #1a1a2e; position: relative;
+            display: flex; align-items: center; overflow: hidden;
+        }
+        .film-strip::before, .film-strip::after {
+            content: ''; position: absolute; left: 0; right: 0; height: 8px;
+            background: repeating-linear-gradient(90deg, #333 0px, #333 15px, transparent 15px, transparent 25px);
+        }
+        .film-strip::before { top: 0; }
+        .film-strip::after { bottom: 0; }
+        .film-strip-holes {
+            display: flex; width: 100%; justify-content: space-around;
+            position: absolute; top: 50%; transform: translateY(-50%);
+        }
+        .film-strip-hole {
+            width: 12px; height: 8px; background: #555; border-radius: 2px;
+        }
+
+        /* Marquee */
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-content {
+            display: inline-block; animation: marqueeScroll 20s linear infinite;
+        }
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Glow Buttons */
+        .btn-glow {
+            position: relative; overflow: hidden; transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(227, 24, 55, 0.3);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 30px rgba(227, 24, 55, 0.6), 0 0 60px rgba(227, 24, 55, 0.3);
+            transform: translateY(-2px);
+        }
+        .btn-glow::after {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg); transition: all 0.5s ease;
+        }
+        .btn-glow:hover::after { left: 100%; }
+
+        .btn-gold-glow {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        .btn-gold-glow:hover {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Card Hover Effects */
+        .program-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
+        }
+        .program-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .program-card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        .program-card:hover::before { left: 100%; }
+
+        /* Timeline */
+        .timeline-item {
+            opacity: 0; transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        .timeline-item.visible {
+            opacity: 1; transform: translateY(0);
+        }
+
+        /* Gallery */
+        .gallery-item {
+            overflow: hidden; border-radius: 12px; position: relative; cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .gallery-item:hover { transform: scale(1.03); z-index: 2; }
+        .gallery-item img { transition: all 0.4s ease; width: 100%; height: 100%; object-fit: cover; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(227,24,55,0.8) 100%);
+            opacity: 0; transition: opacity 0.4s ease;
+            display: flex; align-items: flex-end; padding: 20px;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        /* FAQ Accordion */
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        .faq-answer.open { max-height: 200px; padding-top: 12px; }
+        .faq-icon { transition: transform 0.3s ease; }
+        .faq-icon.rotated { transform: rotate(45deg); }
+
+        /* Entrance Animations */
+        .animate-on-scroll {
+            opacity: 0; transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .animate-on-scroll.visible {
+            opacity: 1; transform: translateY(0);
+        }
+        .animate-on-scroll-left {
+            opacity: 0; transform: translateX(-60px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .animate-on-scroll-left.visible {
+            opacity: 1; transform: translateX(0);
+        }
+        .animate-on-scroll-right {
+            opacity: 0; transform: translateX(60px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .animate-on-scroll-right.visible {
+            opacity: 1; transform: translateX(0);
+        }
+
+        /* Location Card Hover Glow */
+        .location-card {
+            transition: all 0.4s ease; position: relative;
+        }
+        .location-card:hover {
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.4), 0 20px 60px rgba(0,0,0,0.3);
+            transform: translateY(-8px);
+        }
+
+        /* Applaude Animation */
+        @keyframes applause {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .applause-anim { animation: applause 0.5s ease-in-out infinite; }
+
+        /* Star Rating Animation */
+        .star-bounce { animation: starBounce 0.6s ease-in-out; }
+        @keyframes starBounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* Custom cursor */
+        .custom-cursor {
+            width: 20px; height: 20px; border: 2px solid #FFD700;
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 9999; transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        /* Pulse ring */
+        @keyframes pulseRing {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #FFD700, #FF6B35, #E31837);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navbar */
+        .navbar { transition: all 0.3s ease; }
+        .navbar.scrolled {
+            background: rgba(26, 26, 46, 0.95) !important;
+            backdrop-filter: blur(20px); box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%); transition: transform 0.3s ease;
+        }
+        .mobile-menu.open { transform: translateX(0); }
+
+        /* Particle background */
+        .particles {
+            position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+        }
+        .particle {
+            position: absolute; width: 4px; height: 4px; background: rgba(255,215,0,0.3);
+            border-radius: 50%; animation: particleFloat 8s linear infinite;
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Film reel spin */
+        @keyframes filmSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .film-reel-spin { animation: filmSpin 8s linear infinite; }
+
+        /* Shimmer effect */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        /* Testimonial card */
+        .testimonial-card {
+            transition: all 0.4s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="bg-campDark text-white font-poppins">
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor hidden md:block" id="customCursor"></div>
+
+    <!-- Scrolling Marquee -->
+    <div class="bg-gradient-to-r from-campRed via-campOrange to-campGold text-white py-2 text-sm font-bold marquee-container">
+        <div class="marquee-content">
+            🎬 FILM CAMP — Where Kids Become Filmmakers  &nbsp;&nbsp;⭐ AGES 7-14 &nbsp;&nbsp;🏆 REAL MOVIE PRODUCTION &nbsp;&nbsp;📍 AUSTIN • LOS ANGELES • SAN FRANCISCO &nbsp;&nbsp;🎬 FILM CAMP — Where Kids Become Filmmakers 🎥 &nbsp;&nbsp;⭐ AGES 7-14 &nbsp;&nbsp;🏆 REAL MOVIE PRODUCTION &nbsp;&nbsp;📍 AUSTIN • LOS ANGELES • SAN FRANCISCO &nbsp;&nbsp;🎬 FILM CAMP — Where Kids Become Filmmakers 🎥 &nbsp;&nbsp;⭐ AGES 7-14 &nbsp;&nbsp;🏆 REAL MOVIE PRODUCTION &nbsp;&nbsp;📍 AUSTIN • LOS ANGELES • SAN FRANCISCO
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="navbar fixed top-8 left-0 right-0 z-50 py-3 px-4 md:px-8" id="mainNav">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="https://film.camp" class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-campRed to-campOrange rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg">
+                    🎬
+                </div>
+                <span class="text-xl font-black tracking-tight hidden sm:block">
+                    <span class="text-campRed">FILM</span><span class="text-white">CAMP</span>
+                </span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-6">
+                <a href="#home" class="text-sm font-semibold text-white/80 hover:text-campGold transition-colors">Home</a>
+                <a href="#programs" class="text-sm font-semibold text-white/80 hover:text-campGold transition-colors">Programs</a>
+                <a href="#locations" class="text-sm font-semibold text-white/80 hover:text-campGold transition-colors">Locations</a>
+                <a href="#gallery" class="text-sm font-semibold text-white/80 hover:text-campGold transition-colors">Gallery</a>
+                <a href="#faq" class="text-sm font-semibold text-white/80 hover:text-campGold transition-colors">FAQ</a>
+                <a href="#contact" class="text-sm font-semibold text-white/80 hover:text-campGold transition-colors">Contact</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <a href="https://film.camp" target="_blank" class="btn-glow hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-campRed to-red-600 text-white px-6 py-2.5 rounded-full font-bold text-sm">
+                <span>Enroll Now</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden text-white" id="mobileMenuBtn" aria-label="Open menu">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 w-72 h-full bg-campDark/98 z-[60] p-8 flex flex-col gap-6" id="mobileMenu">
+        <button class="self-end text-white mb-4" id="mobileMenuClose" aria-label="Close menu">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <a href="#home" class="text-lg font-bold text-white/80 hover:text-campGold transition-colors mobile-link">Home</a>
+        <a href="#programs" class="text-lg font-bold text-white/80 hover:text-campGold transition-colors mobile-link">Programs</a>
+        <a href="#locations" class="text-lg font-bold text-white/80 hover:text-campGold transition-colors mobile-link">Locations</a>
+        <a href="#gallery" class="text-lg font-bold text-white/80 hover:text-campGold transition-colors mobile-link">Gallery</a>
+        <a href="#faq" class="text-lg font-bold text-white/80 hover:text-campGold transition-colors mobile-link">FAQ</a>
+        <a href="#contact" class="text-lg font-bold text-white/80 hover:text-campGold transition-colors mobile-link">Contact</a>
+        <a href="https://film.camp" target="_blank" class="btn-glow bg-gradient-to-r from-campRed to-red-600 text-white px-6 py-3 rounded-full font-bold text-center mt-4">
+            Enroll Now 
+        </a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-campDark via-[#16213e] to-campDark"></div>
+        <div class="spotlight" style="left: 10%;"></div>
+        <div class="spotlight" style="right: 10%; animation-delay: 2s;"></div>
+        <div class="particles" id="heroParticles"></div>
+
+        <!-- Film strip decorations -->
+        <div class="absolute top-0 left-0 w-full opacity-10">
+            <div class="flex">
+                <div class="w-16 h-full bg-[#333]" style="background-image: repeating-linear-gradient(180deg, #555 0px, #555 8px, transparent 8px, transparent 16px);"></div>
+                <div class="flex-1"></div>
+                <div class="w-16 h-full bg-[#333]" style="background-image: repeating-linear-gradient(180deg, #555 0px, #555 8px, transparent 8px, transparent 16px);"></div>
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 pt-32 pb-16 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 animate-on-scroll">
+                        <span class="w-2 h-2 bg-campGold rounded-full animate-pulse"></span>
+                        <span class="text-sm font-semibold text-campGold">Now Enrolling for Summer 2026</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 animate-on-scroll" style="transition-delay: 0.1s;">
+                        YOUR CHILD'S FIRST MOVIE
+                        <span class="gradient-text">STARTS HERE</span>
+                        <span class="inline-block animate-bounce">🎬</span>
+                    </h1>
+
+                    <p class="text-lg md:text-xl text-white/70 mb-8 max-w-xl mx-auto lg:mx-0 animate-on-scroll" style="transition-delay: 0.2s;">
+                        An unforgettable filmmaking adventure where kids write scripts, direct scenes, act on camera, and premiere their own movies.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-on-scroll" style="transition-delay: 0.3s;">
+                        <a href="https://film.camp" target="_blank" class="btn-glow inline-flex items-center justify-center gap-2 bg-gradient-to-r from-campRed to-red-600 text-white px-8 py-4 rounded-full font-bold text-lg">
+                             Join Film Camp
+                        </a>
+                        <a href="https://film.camp" target="_blank" class="btn-gold-glow inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-campGold text-campGold px-8 py-4 rounded-full font-bold text-lg hover:bg-campGold hover:text-campDark transition-all">
+                            ▶ Watch Trailer
+                        </a>
+                    </div>
+
+                    <!-- Floating badges -->
+                    <div class="flex flex-wrap gap-3 mt-8 justify-center lg:justify-start animate-on-scroll" style="transition-delay: 0.4s;">
+                        <div class="float-element bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-semibold flex items-center gap-2">
+                            <span class="text-lg">👶</span> Ages 7–14
+                        </div>
+                        <div class="float-element-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-semibold flex items-center gap-2">
+                            <span class="text-lg">✨</span> No Experience Needed
+                        </div>
+                        <div class="float-element-3 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-semibold flex items-center gap-2">
+                            <span class="text-lg"></span> Real Film Equipment
+                        </div>
+                        <div class="float-element bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-semibold flex items-center gap-2">
+                            <span class="text-lg">🎞️</span> Create Real Movies
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Image -->
+                <div class="relative animate-on-scroll-right">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/10f2bf4f3-504f-405a-aae5-3731281e9987.png" alt="Kids using cameras at Film Camp" class="w-full h-auto rounded-3xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-campDark/50 to-transparent"></div>
+                    </div>
+                    <!-- Decorative elements -->
+                    <div class="absolute -top-4 -right-4 w-20 h-20 bg-campGold/20 rounded-full blur-xl"></div>
+                    <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-campRed/20 rounded-full blur-xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILM STRIP DIVIDER -->
+    <div class="film-strip relative">
+        <div class="film-strip-holes">
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+        </div>
+    </div>
+
+    <!-- FEATURE HIGHLIGHTS -->
+    <section class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-campDark via-[#0f3460]/30 to-campDark"></div>
+        <div class="relative max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-5xl font-black mb-4">
+                    Why Choose <span class="gradient-text">Film Camp?</span>
+                </h2>
+                <p class="text-white/60 text-lg max-w-2xl mx-auto">Four reasons why kids and parents love our filmmaking experience</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="program-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/10 animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-campRed to-red-600 rounded-2xl flex items-center justify-center text-4xl shadow-lg">
+                        🎥
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Real Film Equipment</h3>
+                    <p class="text-white/60 text-sm">Professional cameras, lighting, and audio gear for an authentic filmmaking experience</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="program-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/10 animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-campGold to-yellow-500 rounded-2xl flex items-center justify-center text-4xl shadow-lg">
+                        
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Build Confidence</h3>
+                    <p class="text-white/60 text-sm">Every child grows in self-expression, leadership, and creative confidence</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="program-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/10 animate-on-scroll" style="transition-delay: 0.3s;">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-campOrange to-orange-500 rounded-2xl flex items-center justify-center text-4xl shadow-lg">
+                        🎬
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Hands-On Learning</h3>
+                    <p class="text-white/60 text-sm">Learn by doing—write, direct, act, film, and edit real movie projects</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="program-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/10 animate-on-scroll" style="transition-delay: 0.4s;">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center text-4xl shadow-lg">
+                        🏆
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Premiere Your Film</h3>
+                    <p class="text-white/60 text-sm">Every camper's movie gets a real red carpet premiere screening</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-campDark via-[#16213e] to-campDark"></div>
+        <div class="spotlight" style="left: 50%; transform: translateX(-50%);"></div>
+        <div class="relative max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="animate-on-scroll-left">
+                    <span class="text-campGold font-bold text-sm tracking-widest uppercase">About Film Camp</span>
+                    <h2 class="text-4xl md:text-5xl font-black mt-4 mb-6">
+                        Lights. Camera.<br><span class="gradient-text">Creativity.</span>
+                    </h2>
+                    <p class="text-white/70 text-lg mb-6 leading-relaxed">
+                        Film Camp gives kids and teens the opportunity to become real filmmakers in a fun and collaborative environment. Students work together to create original movies while learning storytelling, acting, directing, cinematography, editing, and production skills.
+                    </p>
+                    <p class="text-white/60 text-lg mb-8 leading-relaxed">
+                        Every camper experiences the excitement of a real movie set while building creativity, confidence, teamwork, and communication skills.
+                    </p>
+                    <a href="https://film.camp" target="_blank" class="btn-glow inline-flex items-center gap-2 bg-gradient-to-r from-campRed to-red-600 text-white px-8 py-4 rounded-full font-bold">
+                        Learn More About Us
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                    </a>
+                </div>
+
+                <!-- Right - Behind the Scenes Layout -->
+                <div class="relative animate-on-scroll-right">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4">
+                            <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/1305d6c9f-0454-4362-813e-434d4cd2118e.png" alt="Kids filming scenes" class="rounded-2xl w-full h-48 object-cover shadow-lg">
+                            <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/18e2b59a3-8942-4e17-9f9f-b9def445dcb4.png" alt="Kids working with camera" class="rounded-2xl w-full h-32 object-cover shadow-lg">
+                        </div>
+                        <div class="space-y-4 pt-8">
+                            <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/15e86e05f-fef8-4d8c-ada3-6e2d08151e8a.png" alt="Kids editing video" class="rounded-2xl w-full h-32 object-cover shadow-lg">
+                            <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/150007eb4-4f45-4ebe-9162-f1cb22ed4a1e.png" alt="Kids acting scenes" class="rounded-2xl w-full h-48 object-cover shadow-lg">
+                        </div>
+                    </div>
+                    <!-- Behind the scenes badge -->
+                    <div class="absolute -bottom-4 -right-4 bg-gradient-to-r from-campRed to-red-600 text-white px-6 py-3 rounded-2xl font-bold shadow-xl rotate-3">
+                         Behind the Scenes
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILM STRIP DIVIDER -->
+    <div class="film-strip relative">
+        <div class="film-strip-holes">
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+        </div>
+    </div>
+
+    <!-- PROGRAMS & SERVICES -->
+    <section id="programs" class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-campDark via-[#0f3460]/20 to-campDark"></div>
+        <div class="relative max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-campGold font-bold text-sm tracking-widest uppercase">What We Offer</span>
+                <h2 class="text-3xl md:text-5xl font-black mt-4 mb-4">
+                    Programs & <span class="gradient-text">Services</span>
+                </h2>
+                <p class="text-white/60 text-lg max-w-2xl mx-auto">From scriptwriting to the big premiere — every stage of filmmaking covered</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Program 1 -->
+                <a href="https://film.camp" target="_blank" class="program-card bg-gradient-to-br from-purple-900/80 to-purple-700/60 rounded-2xl overflow-hidden border border-white/10 animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="h-40 bg-gradient-to-br from-purple-600 to-purple-900 flex items-center justify-center text-6xl relative">
+                        <span class="absolute text-8xl opacity-20">📝</span>
+                        ✍️
+                    </div>
+                    <div class="p-6">
+                        <span class="text-purple-300 text-xs font-bold uppercase tracking-wider">Program 1</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2">Scriptwriting</h3>
+                        <p class="text-white/60 text-sm mb-4">Develop stories, characters, scenes, and dialogue for original films.</p>
+                        <span class="text-campGold text-sm font-semibold flex items-center gap-1">
+                            Explore Writing <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Program 2 -->
+                <a href="https://film.camp" target="_blank" class="program-card bg-gradient-to-br from-blue-900/80 to-blue-700/60 rounded-2xl overflow-hidden border border-white/10 animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="h-40 bg-gradient-to-br from-blue-600 to-blue-900 flex items-center justify-center text-6xl relative">
+                        <span class="absolute text-8xl opacity-20">🎬</span>
+                        
+                    </div>
+                    <div class="p-6">
+                        <span class="text-blue-300 text-xs font-bold uppercase tracking-wider">Program 2</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2">Directing</h3>
+                        <p class="text-white/60 text-sm mb-4">Learn camera angles, directing actors, storytelling, and visual composition.</p>
+                        <span class="text-campGold text-sm font-semibold flex items-center gap-1">
+                            Learn Directing <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Program 3 -->
+                <a href="https://film.camp" target="_blank" class="program-card bg-gradient-to-br from-pink-900/80 to-pink-700/60 rounded-2xl overflow-hidden border border-white/10 animate-on-scroll" style="transition-delay: 0.3s;">
+                    <div class="h-40 bg-gradient-to-br from-pink-600 to-pink-900 flex items-center justify-center text-6xl relative">
+                        <span class="absolute text-8xl opacity-20"></span>
+                        🌟
+                    </div>
+                    <div class="p-6">
+                        <span class="text-pink-300 text-xs font-bold uppercase tracking-wider">Program 3</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2">Acting for Camera</h3>
+                        <p class="text-white/60 text-sm mb-4">Perform in scenes while building confidence and communication skills.</p>
+                        <span class="text-campGold text-sm font-semibold flex items-center gap-1">
+                            Start Acting <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Program 4 -->
+                <a href="https://film.camp" target="_blank" class="program-card bg-gradient-to-br from-orange-900/80 to-orange-700/60 rounded-2xl overflow-hidden border border-white/10 animate-on-scroll" style="transition-delay: 0.4s;">
+                    <div class="h-40 bg-gradient-to-br from-orange-600 to-orange-900 flex items-center justify-center text-6xl relative">
+                        <span class="absolute text-8xl opacity-20">📹</span>
+                        🎬
+                    </div>
+                    <div class="p-6">
+                        <span class="text-orange-300 text-xs font-bold uppercase tracking-wider">Program 4</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2">Film Production</h3>
+                        <p class="text-white/60 text-sm mb-4">Operate professional cameras, microphones, and studio lighting equipment.</p>
+                        <span class="text-campGold text-sm font-semibold flex items-center gap-1">
+                            Production Skills <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Program 5 -->
+                <a href="https://film.camp/film-classes/los-angeles" target="_blank" class="program-card bg-gradient-to-br from-green-900/80 to-green-700/60 rounded-2xl overflow-hidden border border-white/10 animate-on-scroll" style="transition-delay: 0.5s;">
+                    <div class="h-40 bg-gradient-to-br from-green-600 to-green-900 flex items-center justify-center text-6xl relative">
+                        <span class="absolute text-8xl opacity-20">✂️</span>
+                        ️
+                    </div>
+                    <div class="p-6">
+                        <span class="text-green-300 text-xs font-bold uppercase tracking-wider">Program 5</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2">Editing & Post Production</h3>
+                        <p class="text-white/60 text-sm mb-4">Edit movies, add soundtracks, effects, transitions, and titles.</p>
+                        <span class="text-campGold text-sm font-semibold flex items-center gap-1">
+                            Learn Editing <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Program 6 -->
+                <a href="https://film.camp/summer-camps-austin" target="_blank" class="program-card bg-gradient-to-br from-red-900/80 to-red-700/60 rounded-2xl overflow-hidden border border-white/10 animate-on-scroll" style="transition-delay: 0.6s;">
+                    <div class="h-40 bg-gradient-to-br from-red-600 to-red-900 flex items-center justify-center text-6xl relative">
+                        <span class="absolute text-8xl opacity-20">🤠</span>
+                        🎬
+                    </div>
+                    <div class="p-6">
+                        <span class="text-red-300 text-xs font-bold uppercase tracking-wider">Program 6</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2">Austin Film Camp</h3>
+                        <p class="text-white/60 text-sm mb-4">Summer filmmaking camps in Austin featuring full movie production experiences.</p>
+                        <span class="text-campGold text-sm font-semibold flex items-center gap-1">
+                            Book Austin Camp <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Program 7 -->
+                <a href="https://film.camp/summer-camps-los-angeles" target="_blank" class="program-card bg-gradient-to-br from-yellow-900/80 to-yellow-700/60 rounded-2xl overflow-hidden border border-white/10 animate-on-scroll" style="transition-delay: 0.7s;">
+                    <div class="h-40 bg-gradient-to-br from-yellow-600 to-yellow-900 flex items-center justify-center text-6xl relative">
+                        <span class="absolute text-8xl opacity-20">🌴</span>
+                        🌟
+                    </div>
+                    <div class="p-6">
+                        <span class="text-yellow-300 text-xs font-bold uppercase tracking-wider">Program 7</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2">Los Angeles Film Camp</h3>
+                        <p class="text-white/60 text-sm mb-4">Hollywood-inspired film camp experience in Los Angeles.</p>
+                        <span class="text-campGold text-sm font-semibold flex items-center gap-1">
+                            Book LA Camp <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Program 8 -->
+                <a href="https://film.camp/film-classes/san-francisco" target="_blank" class="program-card bg-gradient-to-br from-cyan-900/80 to-cyan-700/60 rounded-2xl overflow-hidden border border-white/10 animate-on-scroll" style="transition-delay: 0.8s;">
+                    <div class="h-40 bg-gradient-to-br from-cyan-600 to-cyan-900 flex items-center justify-center text-6xl relative">
+                        <span class="absolute text-8xl opacity-20">🌉</span>
+                        🎥
+                    </div>
+                    <div class="p-6">
+                        <span class="text-cyan-300 text-xs font-bold uppercase tracking-wider">Program 8</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2">San Francisco Film Classes</h3>
+                        <p class="text-white/60 text-sm mb-4">Creative filmmaking classes for young storytellers.</p>
+                        <span class="text-campGold text-sm font-semibold flex items-center gap-1">
+                            Book SF Classes <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILM STRIP DIVIDER -->
+    <div class="film-strip relative">
+        <div class="film-strip-holes">
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+        </div>
+    </div>
+
+    <!-- DAY AT CAMP TIMELINE -->
+    <section class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-campDark via-[#16213e]/50 to-campDark"></div>
+        <div class="relative max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-campGold font-bold text-sm tracking-widest uppercase">Schedule</span>
+                <h2 class="text-3xl md:text-5xl font-black mt-4 mb-4">
+                    A Day at <span class="gradient-text">Camp</span> 🎬
+                </h2>
+                <p class="text-white/60 text-lg max-w-2xl mx-auto">Every day is an adventure in filmmaking!</p>
+            </div>
+
+            <div class="relative overflow-x-auto pb-8">
+                <div class="flex items-start min-w-max px-4 gap-0">
+                    <!-- Timeline line -->
+                    <div class="absolute top-12 left-0 right-0 h-1 bg-gradient-to-r from-campRed via-campGold to-campOrange mx-8"></div>
+
+                    <!-- Timeline items -->
+                    <div class="timeline-item flex flex-col items-center w-40 mx-4" data-delay="0">
+                        <div class="w-8 h-8 bg-campRed rounded-full flex items-center justify-center text-sm font-bold z-10 shadow-lg ring-4 ring-campRed/30">1</div>
+                        <div class="mt-4 bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center w-full border border-white/10">
+                            <span class="text-campGold font-bold text-sm">9:00 AM</span>
+                            <p class="text-white font-semibold text-sm mt-1">Creative Warmups</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item flex flex-col items-center w-40 mx-4" data-delay="100">
+                        <div class="w-8 h-8 bg-campOrange rounded-full flex items-center justify-center text-sm font-bold z-10 shadow-lg ring-4 ring-campOrange/30">2</div>
+                        <div class="mt-4 bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center w-full border border-white/10">
+                            <span class="text-campGold font-bold text-sm">10:00 AM</span>
+                            <p class="text-white font-semibold text-sm mt-1">Scriptwriting Workshop</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item flex flex-col items-center w-40 mx-4" data-delay="200">
+                        <div class="w-8 h-8 bg-campGold text-campDark rounded-full flex items-center justify-center text-sm font-bold z-10 shadow-lg ring-4 ring-campGold/30">3</div>
+                        <div class="mt-4 bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center w-full border border-white/10">
+                            <span class="text-campGold font-bold text-sm">11:30 AM</span>
+                            <p class="text-white font-semibold text-sm mt-1">Filming Scenes</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item flex flex-col items-center w-40 mx-4" data-delay="300">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-sm font-bold z-10 shadow-lg ring-4 ring-green-500/30">4</div>
+                        <div class="mt-4 bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center w-full border border-white/10">
+                            <span class="text-campGold font-bold text-sm">1:00 PM</span>
+                            <p class="text-white font-semibold text-sm mt-1">Lunch Break 🍕</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item flex flex-col items-center w-40 mx-4" data-delay="400">
+                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-sm font-bold z-10 shadow-lg ring-4 ring-blue-500/30">5</div>
+                        <div class="mt-4 bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center w-full border border-white/10">
+                            <span class="text-campGold font-bold text-sm">2:00 PM</span>
+                            <p class="text-white font-semibold text-sm mt-1">Acting & Directing</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item flex flex-col items-center w-40 mx-4" data-delay="500">
+                        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-sm font-bold z-10 shadow-lg ring-4 ring-purple-500/30">6</div>
+                        <div class="mt-4 bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center w-full border border-white/10">
+                            <span class="text-campGold font-bold text-sm">3:30 PM</span>
+                            <p class="text-white font-semibold text-sm mt-1">Editing Session</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item flex flex-col items-center w-40 mx-4" data-delay="600">
+                        <div class="w-8 h-8 bg-campRed rounded-full flex items-center justify-center text-sm font-bold z-10 shadow-lg ring-4 ring-campRed/30">7</div>
+                        <div class="mt-4 bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center w-full border border-white/10">
+                            <span class="text-campGold font-bold text-sm">5:00 PM</span>
+                            <p class="text-white font-semibold text-sm mt-1">Daily Screening </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILM STRIP DIVIDER -->
+    <div class="film-strip relative">
+        <div class="film-strip-holes">
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+        </div>
+    </div>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-campDark via-[#0f3460]/20 to-campDark"></div>
+        <div class="relative max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-campGold font-bold text-sm tracking-widest uppercase">Memories</span>
+                <h2 class="text-3xl md:text-5xl font-black mt-4 mb-4">
+                    Camp <span class="gradient-text">Gallery</span> 📸
+                </h2>
+                <p class="text-white/60 text-lg max-w-2xl mx-auto">Moments captured from our filmmaking adventures</p>
+            </div>
+
+            <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+                <div class="gallery-item animate-on-scroll">
+                    <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/10f2bf4f3-504f-405a-aae5-3731281e9987.png" alt="Kids filming with cameras" class="w-full">
+                    <div class="gallery-overlay">
+                        <span class="text-white font-bold">📷 Kids Filming on Set</span>
+                    </div>
+                </div>
+                <div class="gallery-item animate-on-scroll" style="transition-delay: 0.1s;">
+                    <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/15e86e05f-fef8-4d8c-ada3-6e2d08151e8a.png" alt="Kids editing video" class="w-full">
+                    <div class="gallery-overlay">
+                        <span class="text-white font-bold">✂️ Editing Station</span>
+                    </div>
+                </div>
+                <div class="gallery-item animate-on-scroll" style="transition-delay: 0.2s;">
+                    <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/1305d6c9f-0454-4362-813e-434d4cd2118e.png" alt="Kids teamwork filming" class="w-full">
+                    <div class="gallery-overlay">
+                        <span class="text-white font-bold">🤝 Teamwork Moments</span>
+                    </div>
+                </div>
+                <div class="gallery-item animate-on-scroll" style="transition-delay: 0.3s;">
+                    <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/150007eb4-4f45-4ebe-9162-f1cb22ed4a1e.png" alt="Kids acting scenes" class="w-full">
+                    <div class="gallery-overlay">
+                        <span class="text-white font-bold"> Acting Scenes</span>
+                    </div>
+                </div>
+                <div class="gallery-item animate-on-scroll" style="transition-delay: 0.4s;">
+                    <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/1214b27e2-32aa-9154-afa8-81cf558f067d.png" alt="Red carpet premiere" class="w-full">
+                    <div class="gallery-overlay">
+                        <span class="text-white font-bold">🏆 Red Carpet Moments</span>
+                    </div>
+                </div>
+                <div class="gallery-item animate-on-scroll" style="transition-delay: 0.5s;">
+                    <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/1646b1d43-ec0f-49d2-80b1-d0f887f9a1a7.png" alt="Behind the scenes" class="w-full">
+                    <div class="gallery-overlay">
+                        <span class="text-white font-bold">🎬 Behind the Scenes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILM STRIP DIVIDER -->
+    <div class="film-strip relative">
+        <div class="film-strip-holes">
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-campDark via-[#16213e]/50 to-campDark"></div>
+        <div class="relative max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-campGold font-bold text-sm tracking-widest uppercase">Reviews</span>
+                <h2 class="text-3xl md:text-5xl font-black mt-4 mb-4">
+                    What Parents <span class="gradient-text">Say</span> ⭐
+                </h2>
+                <p class="text-white/60 text-lg max-w-2xl mx-auto">Real reviews from real families</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="flex gap-1 mb-4">
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.1s;">⭐</span>
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.2s;">⭐</span>
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.3s;">⭐</span>
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.4s;">⭐</span>
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.5s;">⭐</span>
+                    </div>
+                    <p class="text-white/80 text-lg mb-6 italic">"This was the highlight of our summer. My son couldn't stop talking about Film Camp for months!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-gradient-to-br from-campRed to-campOrange rounded-full flex items-center justify-center text-lg font-bold">S</div>
+                        <div>
+                            <p class="font-bold text-sm">Sarah M.</p>
+                            <p class="text-white/50 text-xs">Parent — Austin Camp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="flex gap-1 mb-4">
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.1s;">⭐</span>
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.2s;">⭐</span>
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.3s;">⭐</span>
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.4s;">⭐</span>
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.5s;">⭐</span>
+                    </div>
+                    <p class="text-white/80 text-lg mb-6 italic">"My daughter gained so much confidence. She was shy before camp and now she wants to be a director!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-gradient-to-br from-campGold to-yellow-500 rounded-full flex items-center justify-center text-lg font-bold text-campDark">J</div>
+                        <div>
+                            <p class="font-bold text-sm">James R.</p>
+                            <p class="text-white/50 text-xs">Parent — LA Camp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 animate-on-scroll" style="transition-delay: 0.3s;">
+                    <div class="flex gap-1 mb-4">
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.1s;">⭐</span>
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.2s;">⭐</span>
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.3s;">⭐</span>
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.4s;">⭐</span>
+                        <span class="text-campGold text-2xl star-bounce" style="animation-delay: 0.5s;">⭐</span>
+                    </div>
+                    <p class="text-white/80 text-lg mb-6 italic">"The final movie premiere was unforgettable. Tears of joy seeing my kids on the big screen!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-lg font-bold">L</div>
+                        <div>
+                            <p class="font-bold text-sm">Lisa K.</p>
+                            <p class="text-white/50 text-xs">Parent — SF Classes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILM STRIP DIVIDER -->
+    <div class="film-strip relative">
+        <div class="film-strip-holes">
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+        </div>
+    </div>
+
+    <!-- LOCATIONS SECTION -->
+    <section id="locations" class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-campDark via-[#0f3460]/20 to-campDark"></div>
+        <div class="relative max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-campGold font-bold text-sm tracking-widest uppercase">Find Us</span>
+                <h2 class="text-3xl md:text-5xl font-black mt-4 mb-4">
+                    Camp <span class="gradient-text">Locations</span> 📍
+                </h2>
+                <p class="text-white/60 text-lg max-w-2xl mx-auto">Three amazing cities, one incredible experience</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Austin -->
+                <div class="location-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/1fc60e075-9e38-4260-94b2-1685fe209979.png" alt="Austin Texas" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-2xl">🤠</span>
+                            <h3 class="text-2xl font-black">Austin</h3>
+                        </div>
+                        <p class="text-white/60 text-sm mb-4">Summer filmmaking camps in the heart of Texas. Full movie production experiences in Austin's vibrant creative scene.</p>
+                        <div class="aspect-video rounded-xl overflow-hidden mb-4">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3442.185173505312!2d-97.781025!3d30.3740993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e94f7e2e2cbd941%3A0xc053482077f8eb1a!2sFilm%20Camp!5e0!3m2!1sen!2sbd!4v1780223246216!5m2!1sen!2sbd" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <a href="https://film.camp/summer-camps-austin" target="_blank" class="btn-glow w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-campRed to-red-600 text-white px-6 py-3 rounded-full font-bold text-sm">
+                            Enroll in Austin Camp 🎬
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Los Angeles -->
+                <div class="location-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/1dd6c6e1b-dd90-44ef-9a06-f1381691e831.png" alt="Los Angeles Hollywood" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-2xl"></span>
+                            <h3 class="text-2xl font-black">Los Angeles</h3>
+                        </div>
+                        <p class="text-white/60 text-sm mb-4">Hollywood-inspired film camp experience. Learn filmmaking in the entertainment capital of the world.</p>
+                        <div class="aspect-video rounded-xl overflow-hidden mb-4">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3302.7551259439288!2d-118.2587025!3d34.1270182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x25285ebdbf27c9b7%3A0xa6a09394b694d9cf!2sFilm%20Camp!5e0!3m2!1sen!2sbd!4v1780223265193!5m2!1sen!2sbd" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <a href="https://film.camp/summer-camps-los-angeles" target="_blank" class="btn-glow w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-campRed to-red-600 text-white px-6 py-3 rounded-full font-bold text-sm">
+                            Enroll in LA Camp 
+                        </a>
+                    </div>
+                </div>
+
+                <!-- San Francisco -->
+                <div class="location-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 animate-on-scroll" style="transition-delay: 0.3s;">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/10c93a8ad-2aea-4511-a3f2-0cea663f730a.png" alt="San Francisco" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-2xl">🌉</span>
+                            <h3 class="text-2xl font-black">San Francisco</h3>
+                        </div>
+                        <p class="text-white/60 text-sm mb-4">Creative filmmaking classes for young storytellers in the tech and arts hub of the Bay Area.</p>
+                        <div class="aspect-video rounded-xl overflow-hidden mb-4">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.287092336586!2d-122.4318139!3d37.80674390000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473ae297aff407bd%3A0x3d1c591cb9a37501!2sFilm%20Camp!5e0!3m2!1sen!2sbd!4v1780223295243!5m2!1sen!2sbd" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <a href="https://film.camp/film-classes/san-francisco" target="_blank" class="btn-glow w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-campRed to-red-600 text-white px-6 py-3 rounded-full font-bold text-sm">
+                            Enroll in SF Classes 
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILM STRIP DIVIDER -->
+    <div class="film-strip relative">
+        <div class="film-strip-holes">
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+        </div>
+    </div>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-campDark via-[#16213e]/50 to-campDark"></div>
+        <div class="relative max-w-3xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-campGold font-bold text-sm tracking-widest uppercase">Questions?</span>
+                <h2 class="text-3xl md:text-5xl font-black mt-4 mb-4">
+                    Frequently <span class="gradient-text">Asked</span> 🎬
+                </h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden animate-on-scroll" style="transition-delay: 0.1s;">
+                    <button class="faq-btn w-full flex items-center justify-between p-6 text-left" data-faq="1">
+                        <span class="font-bold text-lg">Do beginners join Film Camp?</span>
+                        <span class="faq-icon text-2xl text-campGold font-bold ml-4 flex-shrink-0">+</span>
+                    </button>
+                    <div class="faq-answer px-6" id="faq-1">
+                        <p class="text-white/70 pb-6">Yes! No filmmaking experience is needed. Our camps are designed for beginners and experienced young filmmakers alike. Our instructors guide every step of the creative process.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden animate-on-scroll" style="transition-delay: 0.2s;">
+                    <button class="faq-btn w-full flex items-center justify-between p-6 text-left" data-faq="2">
+                        <span class="font-bold text-lg">What ages are accepted?</span>
+                        <span class="faq-icon text-2xl text-campGold font-bold ml-4 flex-shrink-0">+</span>
+                    </button>
+                    <div class="faq-answer px-6" id="faq-2">
+                        <p class="text-white/70 pb-6">Ages 7–14. We group campers by age to ensure age-appropriate learning experiences and peer collaboration.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden animate-on-scroll" style="transition-delay: 0.3s;">
+                    <button class="faq-btn w-full flex items-center justify-between p-6 text-left" data-faq="3">
+                        <span class="font-bold text-lg">Do campers create real movies?</span>
+                        <span class="faq-icon text-2xl text-campGold font-bold ml-4 flex-shrink-0">+</span>
+                    </button>
+                    <div class="faq-answer px-6" id="faq-3">
+                        <p class="text-white/70 pb-6">Absolutely! Every student participates in creating an original short film from concept to premiere. It's not pretend — these are real movies with real credits.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden animate-on-scroll" style="transition-delay: 0.4s;">
+                    <button class="faq-btn w-full flex items-center justify-between p-6 text-left" data-faq="4">
+                        <span class="font-bold text-lg">Is equipment provided?</span>
+                        <span class="faq-icon text-2xl text-campGold font-bold ml-4 flex-shrink-0">+</span>
+                    </button>
+                    <div class="faq-answer px-6" id="faq-4">
+                        <p class="text-white/70 pb-6">Yes! Professional cameras, microphones, lighting, and editing equipment are all included. Campers get hands-on experience with industry-standard gear.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILM STRIP DIVIDER -->
+    <div class="film-strip relative">
+        <div class="film-strip-holes">
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+            <div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+        </div>
+    </div>
+
+    <!-- FINAL CTA SECTION -->
+    <section id="contact" class="py-24 px-4 relative overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0">
+            <img src="https://image.qwenlm.ai/public_source/9cdad360-4d2f-49c5-a7b6-fbc752a57fae/19a64b90a-8de7-4a9a-9d1c-52448db02469.png" alt="Red carpet premiere" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-b from-campDark via-campDark/80 to-campDark"></div>
+        </div>
+        <div class="spotlight" style="left: 30%;"></div>
+        <div class="spotlight" style="right: 30%; animation-delay: 1.5s;"></div>
+
+        <div class="relative max-w-4xl mx-auto text-center">
+            <div class="animate-on-scroll">
+                <div class="inline-flex items-center gap-2 bg-campGold/20 rounded-full px-6 py-3 mb-8">
+                    <span class="text-2xl">🎬</span>
+                    <span class="text-campGold font-bold">Limited Spots Available</span>
+                </div>
+            </div>
+
+            <h2 class="text-4xl md:text-6xl font-black mb-6 animate-on-scroll" style="transition-delay: 0.1s;">
+                READY TO <span class="gradient-text">DIRECT</span><br>YOUR FIRST MOVIE?
+            </h2>
+
+            <p class="text-xl text-white/70 mb-10 max-w-2xl mx-auto animate-on-scroll" style="transition-delay: 0.2s;">
+                Spots fill quickly. Reserve your child's filmmaking adventure today.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-on-scroll" style="transition-delay: 0.3s;">
+                <a href="https://film.camp" target="_blank" class="btn-glow inline-flex items-center justify-center gap-2 bg-gradient-to-r from-campRed to-red-600 text-white px-10 py-5 rounded-full font-bold text-lg shadow-2xl">
+                    🎥 Enroll Now
+                </a>
+                <a href="https://film.camp/contact" target="_blank" class="btn-gold-glow inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white/20 transition-all">
+                    📞 Contact Us
+                </a>
+            </div>
+
+            <!-- Floating elements -->
+            <div class="flex justify-center gap-6 mt-12 animate-on-scroll" style="transition-delay: 0.4s;">
+                <div class="float-element text-4xl">🎬</div>
+                <div class="float-element-2 text-4xl">📷</div>
+                <div class="float-element-3 text-4xl"></div>
+                <div class="float-element text-4xl">🌟</div>
+                <div class="float-element-2 text-4xl">🏆</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0d0d1a] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-campRed to-campOrange rounded-xl flex items-center justify-center text-white font-black text-lg">
+                            🎬
+                        </div>
+                        <span class="text-xl font-black">
+                            <span class="text-campRed">FILM</span><span class="text-white">CAMP</span>
+                        </span>
+                    </div>
+                    <p class="text-white/50 text-sm mb-4">Where kids become filmmakers. An unforgettable summer filmmaking adventure for ages 7–14.</p>
+                    <div class="flex gap-3">
+                        <a href="https://www.facebook.com/filmcamps" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-campRed transition-colors" aria-label="Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@film_camp" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-campRed transition-colors" aria-label="YouTube">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/filmcamp.us" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-campRed transition-colors" aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-white/50 hover:text-campGold transition-colors text-sm">Home</a></li>
+                        <li><a href="#programs" class="text-white/50 hover:text-campGold transition-colors text-sm">Programs</a></li>
+                        <li><a href="#locations" class="text-white/50 hover:text-campGold transition-colors text-sm">Locations</a></li>
+                        <li><a href="#gallery" class="text-white/50 hover:text-campGold transition-colors text-sm">Gallery</a></li>
+                        <li><a href="#faq" class="text-white/50 hover:text-campGold transition-colors text-sm">FAQ</a></li>
+                        <li><a href="https://film.camp/contact" target="_blank" class="text-white/50 hover:text-campGold transition-colors text-sm">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Locations -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Locations</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://film.camp/summer-camps-austin" target="_blank" class="text-white/50 hover:text-campGold transition-colors text-sm">🤠 Austin, TX</a></li>
+                        <li><a href="https://film.camp/summer-camps-los-angeles" target="_blank" class="text-white/50 hover:text-campGold transition-colors text-sm">🌴 Los Angeles, CA</a></li>
+                        <li><a href="https://film.camp/film-classes/san-francisco" target="_blank" class="text-white/50 hover:text-campGold transition-colors text-sm">🌉 San Francisco, CA</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Newsletter</h4>
+                    <p class="text-white/50 text-sm mb-4">Stay updated on camp dates, early bird discounts, and filmmaking tips.</p>
+                    <form class="space-y-3" onsubmit="event.preventDefault(); alert('Thank you for subscribing! 🎬');">
+                        <input type="email" placeholder="Your email address" class="w-full bg-white/10 border border-white/10 rounded-full px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-campGold transition-colors" required>
+                        <button type="submit" class="btn-glow w-full bg-gradient-to-r from-campRed to-red-600 text-white px-4 py-3 rounded-full font-bold text-sm">
+                            Subscribe 📧
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-white/30 text-sm">© 2026 Film Camp. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="https://film.camp/privacy" target="_blank" class="text-white/30 hover:text-white/60 transition-colors text-sm">Privacy Policy</a>
+                    <a href="https://film.camp/terms" target="_blank" class="text-white/30 hover:text-white/60 transition-colors text-sm">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Clapboard -->
+    <div class="fixed bottom-6 right-6 z-40 hidden md:block" id="floatingClapboard">
+        <div class="float-element cursor-pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            <div class="w-14 h-14 bg-gradient-to-br from-campRed to-campOrange rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+                <span class="text-2xl">🎬</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Movie Countdown Animation
+        (function() {
+            var countdownOverlay = document.getElementById('countdownOverlay');
+            var countdownNum = document.getElementById('countdownNum');
+            var countdown = 3;
+
+            function updateCountdown() {
+                if (countdown > 0) {
+                    countdownNum.textContent = countdown;
+                    countdownNum.style.animation = 'none';
+                    void countdownNum.offsetWidth;
+                    countdownNum.style.animation = 'countPulse 1s ease-in-out';
+                    countdown--;
+                    setTimeout(updateCountdown, 1000);
+                } else {
+                    countdownNum.textContent = '🎬';
+                    countdownNum.style.animation = 'none';
+                    void countdownNum.offsetWidth;
+                    countdownNum.style.animation = 'countPulse 1s ease-in-out';
+                    setTimeout(function() {
+                        countdownOverlay.style.transition = 'opacity 0.5s ease';
+                        countdownOverlay.style.opacity = '0';
+                        setTimeout(function() {
+                            countdownOverlay.style.display = 'none';
+                        }, 500);
+                    }, 800);
+                }
+            }
+
+            setTimeout(updateCountdown, 500);
+        })();
+
+        // Custom Cursor
+        (function() {
+            var cursor = document.getElementById('customCursor');
+            if (cursor && window.innerWidth > 768) {
+                document.addEventListener('mousemove', function(e) {
+                    cursor.style.left = e.clientX - 10 + 'px';
+                    cursor.style.top = e.clientY - 10 + 'px';
+                });
+
+                document.querySelectorAll('a, button').forEach(function(el) {
+                    el.addEventListener('mouseenter', function() {
+                        cursor.style.transform = 'scale(2)';
+                        cursor.style.borderColor = '#E31837';
+                    });
+                    el.addEventListener('mouseleave', function() {
+                        cursor.style.transform = 'scale(1)';
+                        cursor.style.borderColor = '#FFD700';
+                    });
+                });
+            }
+        })();
+
+        // Sticky Navbar
+        (function() {
+            var navbar = document.getElementById('mainNav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        })();
+
+        // Mobile Menu
+        (function() {
+            var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            var mobileMenu = document.getElementById('mobileMenu');
+            var mobileMenuClose = document.getElementById('mobileMenuClose');
+            var mobileLinks = document.querySelectorAll('.mobile-link');
+
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.add('open');
+            });
+
+            mobileMenuClose.addEventListener('click', function() {
+                mobileMenu.classList.remove('open');
+            });
+
+            mobileLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('open');
+                });
+            });
+        })();
+
+        // Scroll Animations (Intersection Observer)
+        (function() {
+            var animatedElements = document.querySelectorAll('.animate-on-scroll, .animate-on-scroll-left, .animate-on-scroll-right, .timeline-item');
+
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var delay = entry.target.getAttribute('data-delay') || entry.target.style.transitionDelay;
+                        if (delay) {
+                            setTimeout(function() {
+                                entry.target.classList.add('visible');
+                            }, parseInt(delay) || 0);
+                        } else {
+                            entry.target.classList.add('visible');
+                        }
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            animatedElements.forEach(function(el) {
+                observer.observe(el);
+            });
+        })();
+
+        // FAQ Accordion
+        (function() {
+            var faqButtons = document.querySelectorAll('.faq-btn');
+
+            faqButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var faqId = this.getAttribute('data-faq');
+                    var answer = document.getElementById('faq-' + faqId);
+                    var icon = this.querySelector('.faq-icon');
+
+                    // Close all other answers
+                    document.querySelectorAll('.faq-answer').forEach(function(a) {
+                        if (a.id !== 'faq-' + faqId) {
+                            a.classList.remove('open');
+                        }
+                    });
+                    document.querySelectorAll('.faq-icon').forEach(function(i) {
+                        if (i !== icon) {
+                            i.classList.remove('rotated');
+                        }
+                    });
+
+                    // Toggle current
+                    answer.classList.toggle('open');
+                    icon.classList.toggle('rotated');
+                });
+            });
+        })();
+
+        // Generate particles for hero
+        (function() {
+            var particlesContainer = document.getElementById('heroParticles');
+            if (particlesContainer) {
+                for (var i = 0; i < 30; i++) {
+                    var particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (5 + Math.random() * 5) + 's';
+                    particle.style.width = (2 + Math.random() * 4) + 'px';
+                    particle.style.height = particle.style.width;
+                    particlesContainer.appendChild(particle);
+                }
+            }
+        })();
+
+        // Smooth scroll for anchor links
+        (function() {
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    var targetId = this.getAttribute('href');
+                    if (targetId !== '#') {
+                        e.preventDefault();
+                        var target = document.querySelector(targetId);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
+
